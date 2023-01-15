@@ -10,9 +10,39 @@ const getAllParcitipants  = async(rid) => {
     }
 };
 
-// const 
+// after I get the winner_id, get this participant as a winner
+const getOneParticipant = async( winner_id ) => {
+
+    try {
+        const participant = await db.one("SELECT * FROM participants WHERE id=$1", winner_id);
+        return participant;
+
+    } catch (error) {
+        return error;
+    }
+};
+
+const createAparticipant = async(rid, participant) => {
+    try {
+        const createdParticipant = db.one(
+            "INSERT INTO participants(raffle_id, firstname, lastname, email, phone) VALUES($1, $2, $3, $4, $5) RETURNING *",
+            [
+                rid,
+                participant.firstname,
+                participant.lastname,
+                participant.email,
+                participant.phone,
+            ]
+        );
+        return createdParticipant;
+        
+    } catch (error) {
+        return error;
+    }
+}
 
 module.exports = {
     getAllParcitipants,
-    createParticipant
+    getOneParticipant,
+    createAparticipant
 }
