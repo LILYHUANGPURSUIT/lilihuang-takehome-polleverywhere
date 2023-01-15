@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
-// app.use("/raffles", rafflesController);
+app.use("/api/raffles", rafflesController);
 
 app.get("/", (req, res) => {
     res.json({message: "Server is running ..."})
