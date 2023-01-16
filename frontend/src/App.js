@@ -33,7 +33,7 @@ function App() {
       {/* <Link to="/"><h1>Raffle App</h1></Link> */}
       <Router>
         <Routes>
-          <Route path="/" element={<Home raffles= {raffles} />} />
+          <Route path="/" element={<Home raffles= {raffles}  setRaffles={setRaffles}/>} />
           {/* <Route path="/raffles" element={<AllRaffles />} > */}
           {/* <Route path="/raffle" element={<Raffle />} > */}
             <Route path="/raffles/:id" element={<Raffle />} >

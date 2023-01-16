@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const API = process.env.REACT_APP_API_URL;
 
-export const NewRaffle = () => {
+export const NewRaffle = ({setRaffles}) => {
 
 
   const [ raffle, setRaffle ] = useState(
@@ -22,6 +22,13 @@ export const NewRaffle = () => {
         .then(() => {
           
           navigate(`/`);
+        })
+        .catch((c) => console.warn("catch", c));
+
+        axios
+        .get(`${API}/api/raffles`)
+        .then((response) => {
+          setRaffles(response.data.result)
         })
         .catch((c) => console.warn("catch", c));
     };
@@ -46,7 +53,7 @@ export const NewRaffle = () => {
                 <label htmlFor="raffle">Raffle Name: </label>
                 <input 
                   type="text" 
-                  className="newRaffle-name" 
+                  className="form-control" 
                   id="name" 
                   value={raffle.name}
                   onChange={handleTextChange}

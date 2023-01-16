@@ -11,7 +11,7 @@ const Raffle = () => {
         
         <Outlet />
 
-        <small>Please click Register tag to signup as a participant</small>
+        {/* <small>Please click Register tag to signup as a participant</small> */}
     </div>
   )
 }
