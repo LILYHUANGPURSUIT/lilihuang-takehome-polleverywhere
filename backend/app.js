@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
     res.json({message: "Server is running ..."})
 });
 
-app.get("*", () => {
+app.get("*", (req, res) => {
     res.status(404).json({message: "Page not found"})
 });
 

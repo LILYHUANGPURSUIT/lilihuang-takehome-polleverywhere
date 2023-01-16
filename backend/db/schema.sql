@@ -9,8 +9,8 @@ CREATE TABLE raffles(
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     secret_token TEXT NOT NULL, 
-    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    date_raffled TIMESTAMP DEFAULT NULL,
+    date_created TEXT DEFAULT NULL,
+    date_raffled TEXT DEFAULT NULL,
     winner_id INTEGER DEFAULT NULL
 );
 

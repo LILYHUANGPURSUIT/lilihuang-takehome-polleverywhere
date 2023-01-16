@@ -1,6 +1,6 @@
 const db = require("../db/dbConfig");
 
-const getAllParcitipants  = async(rid) => {
+const getAllParticipants  = async(rid) => {
     try {
         const allParticipants = await db.any("SELECT * FROM participants WHERE raffle_id=$1", rid);
         return allParticipants;
@@ -10,7 +10,7 @@ const getAllParcitipants  = async(rid) => {
     }
 };
 
-// after I get the winner_id, get this participant as a winner
+// after I get the winner_id, pick this participant as a winner
 const getOneParticipant = async( winner_id ) => {
 
     try {
@@ -42,7 +42,7 @@ const createAparticipant = async(rid, participant) => {
 }
 
 module.exports = {
-    getAllParcitipants,
+    getAllParticipants,
     getOneParticipant,
     createAparticipant
 }

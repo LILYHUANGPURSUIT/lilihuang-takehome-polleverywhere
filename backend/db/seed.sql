@@ -1,11 +1,11 @@
 \c raffles_dev;
 
 INSERT INTO raffles (name, secret_token, date_created, date_raffled, winner_id) VALUES
-('raffle one', '111aaa', '2023-01-02 22:00:00', null, null),
-('raffle two', '222poi', '2022-12-02 20:00:00', null, null),
-('raffle three', '333lkj', '2023-01-12 12:00:00', null, null),
-('raffle four', '444mnb', '2022-12-22 22:00:00', null, null),
-('raffle five', '555098', '2023-01-11 09:10:00', null, null);
+('raffle one', '111aaa', 'Tue Jan 10 2023 at 07:40:38', null, null),
+('raffle two', '222poi', 'Wed Jan 11 2023 at 15:40:58', null, null),
+('raffle three', '333lkj', 'Tue Jan 10 2023 at 17:40:38', null, null),
+('raffle four', '444mnb', 'Fri Jan 6 2023 at 10:40:38', null, null),
+('raffle five', '555098', 'Tue Jan 3 2023 at 07:38:38', null, null);
 
 INSERT INTO participants (raffle_id, firstname, lastname, email, phone) VALUES
 ('2', 'James', 'Brown', 'jamesbrown@gmail.com', '6463752227'),

@@ -1,8 +1,8 @@
 const express = require("express");
 const raffles = express.Router();
 
-const { getAllRaffles, createAraffle, getOneRaffle, updateAraffle } = require("../queries/raffles");
-const { getAllParticipants, getOneParticipant, createAparticipant } = require("../queries/getAllParticipants");
+const { getAllRaffles, createAraffle, getOneRaffle, updateAraffle, deleteRaffle } = require("../queries/raffles");
+const { getAllParticipants, getOneParticipant, createAparticipant } = require("../queries/participants");
 const { pickArandomWinner } = require("../helper/pickArandomWinner");
 
 // get all raffles 
@@ -102,4 +102,19 @@ raffles.get("/:id/winner", async (req, res) => {
         res.status(500).json({success: false, error: winner});
     }
     
-})
+});
+
+// delete a raffle 
+raffles.delete("/:id", async (req, res) => {
+    const { id } = req.params;
+    const deletedRaffle = await deleteRaffle(id);
+    if (deletedRaffle.id) {
+      res.json({ success: true, result: deletedRaffle });
+    } else
+      res.status(500).json({
+        success: false,
+        error: deletedRaffle,
+      });
+  });
+
+module.exports = raffles;

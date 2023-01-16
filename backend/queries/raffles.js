@@ -17,7 +17,7 @@ const createAraffle = async(raffle) => {
             [
                 raffle.name,
                 raffle.secret_token,
-                NOW(),
+                raffle.date_created,
             ]
         );
         return createdRaffle;
@@ -52,11 +52,28 @@ const updateAraffle = async (rid, raffle) => {
     } catch (error) {
         return error;
     }
-}
+};
+
+const deleteRaffle = async (rid) => {
+	try {
+        
+        const deletedRaffle = await db.one(
+            "DELETE FROM raffles WHERE id=$1 RETURNING *",
+            rid
+        );
+        return deletedRaffle;
+    
+	} catch (error) {
+		return error;
+	}
+};
+
+
 
 module.exports = {
     getAllRaffles,
     createAraffle,
     getOneRaffle,
-    updateAraffle
+    updateAraffle,
+    deleteRaffle
 }
