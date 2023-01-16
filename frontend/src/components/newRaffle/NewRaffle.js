@@ -1,5 +1,7 @@
-import React, { useState, navigate } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import "./newRaffle.css"
+import { useNavigate } from 'react-router-dom';
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -9,14 +11,14 @@ export const NewRaffle = () => {
   const [ raffle, setRaffle ] = useState(
       {
         name: "",
-        secret_token: "",
-        date_created: Date.now(),
+        secret_token: "" 
       }
     );
+  const navigate = useNavigate()
 
     const addRaffle = () => {
       axios
-        .post(`${API}/raffles`, raffle)
+        .post(`${API}/api/raffles`, raffle)
         .then(() => {
           
           navigate(`/`);

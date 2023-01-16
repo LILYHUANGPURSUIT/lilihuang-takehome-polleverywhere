@@ -1,0 +1,11 @@
+a {
+    text-decoration: none;
+}
+
+.card ul{
+    list-style-type: none;
+}
+
+.card {
+    margin-bottom: 20px;
+}
