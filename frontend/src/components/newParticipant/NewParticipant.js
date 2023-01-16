@@ -1,8 +1,12 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
+import { NavBar } from '../navbar/NavBar'
+
 
 export const NewParticipant = () => {
   return (
-    <div className='participantForm'>
+    <>
+        <div className='participantForm'>
         <h2 className='participantForm__title'>Register to participant in the raffle:</h2>
         <form className='participantForm__main'>
             <div className='participantForm__main__firstname'>
@@ -28,5 +32,7 @@ export const NewParticipant = () => {
             <button type="submit" className="btn btn-secondery">Reset</button>
         </form>
     </div>
+    </>
+    
   )
 }
