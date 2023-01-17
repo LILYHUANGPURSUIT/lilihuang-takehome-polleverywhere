@@ -12,7 +12,14 @@
 
 - This installs the required dependencies
 
-3. To run the React project.
+3. cd into backend
+- $ npm run db_init
+- $ npm run db_seed
+
+- This creates databse, tables and inserts data
+- $ npm start
+
+4. To run the React project.
 - $ npm start
 
 ## Home Page 
