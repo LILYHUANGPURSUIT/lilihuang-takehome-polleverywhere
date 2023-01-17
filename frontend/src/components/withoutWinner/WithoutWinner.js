@@ -45,7 +45,14 @@ const handlePickAWinner = () => {
           placeholder="secret token" 
           onChange={handleTextChange}
           required/>
-          <button onClick={handlePickAWinner}>Pick a Winner</button>
+          <button 
+            type="button" 
+            className="btn btn-outline-primary btn-lg"
+            id="pickWinnerBtn"
+            onClick={handlePickAWinner}>
+            Pick a Winner
+          </button>
+          {/* <button onClick={handlePickAWinner}>Pick a Winner</button> */}
     </div>
     
   )

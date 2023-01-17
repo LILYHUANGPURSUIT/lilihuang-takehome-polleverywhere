@@ -1,0 +1,15 @@
+.raffle__pages {
+    width: 70vw;
+}
+
+.raffle__pages__title {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin-top: 15px;
+    
+}
+
+.raffle__pages__title:hover {
+    color: hsla(196, 61%, 58%, .75);
+}

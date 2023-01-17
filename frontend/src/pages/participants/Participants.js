@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import "./participants.css"
 import { ParticipantInOneRaffle } from '../../components/participantInOneRaffle/ParticipantInOneRaffle'
 
 const API = process.env.REACT_APP_API_URL;
@@ -24,8 +25,8 @@ export const Participants = ({setAllParticipants}) => {
   }, [API, id]);
 
   return (
-    <div>
-        <h2>Participants: total number of this Raffle</h2>
+    <div className='participants__page'>
+        <h2>Participants: {participants.length} total</h2>
         {participants.map( participant => {
           return <ParticipantInOneRaffle key={participant.id} participant={participant}/>
         })}
