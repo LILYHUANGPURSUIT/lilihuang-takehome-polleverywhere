@@ -1,5 +1,8 @@
 function pickArandomWinner (participants) {
-    const randomNum = Math.ceil(Math.random() * participants.length);
+    if(participants.length) return {};
+
+    const randomNum = Math.floor(Math.random() * participants.length)+1;
+    console.log(randomNum)
     return participants[randomNum];
 }
 

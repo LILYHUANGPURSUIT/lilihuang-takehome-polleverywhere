@@ -60,7 +60,7 @@ raffles.get("/:id/participants", async (req, res) => {
 raffles.post("/:id/participants", async(req, res) => {
     const { id } = req.params;
     const participant = req.body;
-    const createdParticipant = createAparticipant(id, participant);
+    const createdParticipant = await createAparticipant(id, participant);
     if(createdParticipant.id) {
         res.json({success: true, result: createdParticipant})
     } else {
@@ -72,18 +72,27 @@ raffles.post("/:id/participants", async(req, res) => {
     // /api/raffles/:id/winner
 raffles.put("/:id/winner", async (req, res) => {
 
+    const currentDateAndTimeArr = Date().toLocaleString().split(" ");
+    const currentDateAndTime = currentDateAndTimeArr.slice(0,4).join(" ") + " at " + currentDateAndTimeArr.slice(4,5).join(" ")
+
     const { id } = req.params;
     const raffle = req.body;
     const allPariticipantsOfSpecificRaffle = await getAllParticipants(id);
-    const winnerId = pickArandomWinner(allPariticipantsOfSpecificRaffle).id;
-    raffle.winner_id = winnerId;
-    raffle.date_raffled = DATE.now();
-    const winnerUpdated = await updateAraffle(id, raffle);
-    
-    if(winnerUpdated.winner_id) {
-        res.json({success: true, result: winnerUpdated});
+    console.log(allPariticipantsOfSpecificRaffle)
+    const winner = pickArandomWinner(allPariticipantsOfSpecificRaffle);
+    if(winner.id) {
+        raffle.winner_id = winner.id;
     } else {
-        res.status(500).json({success: false, error: winnerUpdated});
+        return;
+    }
+    
+    raffle.date_raffled = currentDateAndTime;
+    const updatedRaffle = await updateAraffle(id, raffle);
+    
+    if(updatedRaffle.winner_id) {
+        res.json({success: true, result: updatedRaffle});
+    } else {
+        res.status(500).json({success: false, error: updatedRaffle});
     }
 })
 
