@@ -23,12 +23,17 @@ export const WithoutWinner = ({currentRaffle, allparticipants }) => {
 }
 
 const handlePickAWinner = () => {
-  if(allparticipants.length && currentRaffle.secret_token === token.secret_token) {
+  if(!allparticipants.length) {
+     alert("no participant yet")
+  }
+  if(currentRaffle.secret_token === token.secret_token) {
     axios.put(`${API}/api/raffles/${currentRaffle.id}/winner`, token)
       .then(() => {
         navigate(`/raffles/${currentRaffle.id}/winner`);
       })
       .catch(err => console.log(err))
+  } else {
+    alert("secret token incorrect")
   }
 }
 
