@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
+import "./newParticipant.css"
 
 const API = process.env.REACT_APP_API_URL;
 
 export const NewParticipant = () => {
 
+    const {id} = useParams();
 
-    const [ participant, setparticipant ] = useState(
+    const [ participant, setParticipant ] = useState(
         {
           firstname: "",
           lastname: "",
@@ -17,43 +19,47 @@ export const NewParticipant = () => {
       );
     const navigate = useNavigate()
   
-    //   const addRaffle = () => {
-    //     axios
-    //       .post(`${API}/api/raffles/${raffle_id}/participants`, participant)
-    //       .then(() => {
+      const addParticipant = () => {
+        axios
+          .post(`${API}/api/raffles/${id}/participants`, participant)
+          .then(() => {
             
-    //         navigate(`${API}/api/raffles/${raffle_id}/participants`);
-    //       })
-    //       .catch((c) => console.warn("catch", c));
+            navigate(`/raffles/${id}/participants`);
+          })
+          .catch((c) => console.warn("catch", c));
   
           
-    //   };
+      };
     
       const handleTextChange = (event) => {
-        setparticipant({ ...participant, [event.target.id]: event.target.value });
+        setParticipant({ ...participant, [event.target.id]: event.target.value });
       };
     
       const handleSubmit = (event) => {
         event.preventDefault();
-        // addRaffle();
+        addParticipant();
       };
 
   return (
-    <>
+    <div className='newParticipant'>
         <h2 className='participantForm__title'>Register to participant in the raffle:</h2>
 
         <form class="row g-3" onSubmit={handleSubmit}>
         <div class="col-md-6">
-            <label htmlFor="participant__firstname" className="form-label">First Name</label>
-            <input type="text" className="form-control" id="participant__firstname" onChange={handleTextChange} required/>
+            <label htmlFor="firstname" className="form-label">First Name</label>
+            <input type="text" value={participant.firstname} className="form-control" id="firstname" onChange={handleTextChange} required/>
         </div>
         <div className="col-md-6">
-            <label htmlFor="participant__lastname" className="form-label">Last Name</label>
-            <input type="text" className="form-control" id="participant__lastname" onChange={handleTextChange} required/>
+            <label htmlFor="lastname" className="form-label">Last Name</label>
+            <input type="text" value={participant.lastname}className="form-control" id="lastname" onChange={handleTextChange} required/>
         </div>
         <div className="col-md-6">
-            <label htmlFor="participant__email" className="form-label">Email</label>
-            <input type="email" className="form-control" id="participant__email" onChange={handleTextChange} required/>
+            <label htmlFor="email" className="form-label">Email</label>
+            <input type="email" value={participant.email}className="form-control" id="email" onChange={handleTextChange} required/>
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="phone" className="form-label">Phone Number</label>
+            <input type="text" value={participant.phone}className="form-control" id="phone" onChange={handleTextChange} required/>
         </div>
         
         
@@ -63,7 +69,7 @@ export const NewParticipant = () => {
         </div>
         </form>
         
-    </>
+    </div>
     
   )
 }

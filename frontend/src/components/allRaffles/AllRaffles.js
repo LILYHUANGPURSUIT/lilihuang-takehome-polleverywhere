@@ -9,29 +9,15 @@ import "./allRaffles.css"
 
 export const AllRaffles = ({ raffles }) => {
 
-  // const [ raffles, setRaffles ] = useState([]);
   const [ currentRaffle, setCurrentRaffle ] = useState({});
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`${API}/api/raffles`)
-  //     .then((response) => {
-  //       setRaffles(response.data.result);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     })
-  // }, []);
 
   return (
     <>
-      {/* <NavBar raffle_id={currentRaffle.id} className="nav" /> */}
+      <h2 className='raffle__list__title'>All Raffles: </h2>
       <div className='raffle__list'>
-          
-          <h2 className='raffle__list__title'>All Raffles: </h2>
-          {raffles.map( raffle => {
-            return <RaffleCard key={raffle.id} raffle={raffle} setCurrentRaffle={setCurrentRaffle} />
-          })}
+        {raffles.map( raffle => {
+          return <RaffleCard key={raffle.id} raffle={raffle} setCurrentRaffle={setCurrentRaffle} />
+        })}
       </div>
     </>
     

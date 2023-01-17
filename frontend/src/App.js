@@ -16,6 +16,7 @@ const API = process.env.REACT_APP_API_URL;
 function App() {
 
   const [ raffles, setRaffles ] = useState([]);
+  const [ allparticipants, setAllParticipants ] = useState([]);
 
   useEffect(() => {
     axios
@@ -30,18 +31,15 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Link to="/"><h1>Raffle App</h1></Link> */}
+      <h1 className="app__title">Raffle App</h1>
       <Router>
         <Routes>
           <Route path="/" element={<Home raffles= {raffles}  setRaffles={setRaffles}/>} />
-          {/* <Route path="/raffles" element={<AllRaffles />} > */}
-          {/* <Route path="/raffle" element={<Raffle />} > */}
             <Route path="/raffles/:id" element={<Raffle />} >
               <Route path="register" element={<NewParticipant />} />
-              <Route path="participants" element={<Participants />} />
-              <Route path="winner" element={<Winner />} />
+              <Route path="participants" element={<Participants setAllParticipants={setAllParticipants} />} />
+              <Route path="winner" element={<Winner allparticipants={allparticipants} />} />
             </Route>
-          {/* </Route> */}
         </Routes>
       </Router>
     </div>

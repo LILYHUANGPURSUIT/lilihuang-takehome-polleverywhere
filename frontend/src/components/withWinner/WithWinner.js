@@ -1,17 +1,32 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import "./withWinner.css"
 
-export const WithWinner = () => {
+const API = process.env.REACT_APP_API_URL;
+
+export const WithWinner = ({currentRaffle}) => {
+
+  const [ winner, setWinner ] = useState([]);
+
+  useEffect(() => {
+    axios.get((`${API}/api/${currentRaffle.id}/winner`))
+    .then((response) => setWinner(response.data.result))
+    .catch(err => console.log(err))
+  })
+  
   return (
-    <div className='winnerInfo'>
-        <img src="https://www.shutterstock.com/image-vector/gold-frame-glitter-texture-isolated-260nw-571704754.jpg" alt="placeholder"/>
+    <div className="winnerCard">
+        <img src="https://t3.ftcdn.net/jpg/03/76/67/56/360_F_376675663_KfWjTqneCLrmq2pQthRGHFFH4T2rNLzX.jpg" className="winnerCard__img" alt="placeholder"/>
+      <div className="winnerCard__info">
         <h3>Winner Name</h3>
-        <div>Registered on sAT may 22 2021 at 8:03:17 PM</div>
         <ul>
-            <li>winner id</li>
-            <li>winner email</li>
-            <li>winner phone number</li>
+            <li>Registered on Sat may 22 2021 at 8:03:17 PM</li>
+            <li>winner id: {currentRaffle.winner_id}</li>
+            <li>winner email: {winner.email}</li>
+            <li>winner phone number: {winner.phone}</li>
         </ul>
+      </div>
     </div>
+    
   )
 }

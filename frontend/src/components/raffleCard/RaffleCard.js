@@ -6,7 +6,7 @@ export const RaffleCard = ({ raffle, setCurrentRaffle }) => {
 
   return (
     <div className='raffleCard'>
-        <Link to={`/raffles/${raffle.id}`} onClick={() => setCurrentRaffle(raffle)}>
+        <Link to={`/raffles/${raffle.id}/register`} onClick={() => setCurrentRaffle(raffle)}>
         <div class="card">
             <h3 class="card-header">
                 {raffle.name}

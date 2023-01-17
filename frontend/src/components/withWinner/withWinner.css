@@ -1,3 +1,25 @@
-.winnerInfo {
-    margin-top: 150px;
+.winnerCard {
+    margin-top: 50px;
+    gap: 10px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.winnerCard__img{
+    border-radius: 10px;
+}
+
+.winnerCard__info {
+    margin-top: 20px;
+}
+
+.winnerCard__info ul {
+    padding-inline-start: 16px;
+    /* color: #777; */
+}
+
+.winnerCard__info li {
+    list-style-type: none;
 }

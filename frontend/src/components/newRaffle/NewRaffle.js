@@ -1,37 +1,38 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import "./newRaffle.css"
-import { useNavigate } from 'react-router-dom';
 
 const API = process.env.REACT_APP_API_URL;
 
 export const NewRaffle = ({setRaffles}) => {
 
+  const currentDateAndTimeArr = Date().toLocaleString().split(" ");
+  const currentDateAndTime = currentDateAndTimeArr.slice(0,4).join(" ") + " at " + currentDateAndTimeArr.slice(4,5).join(" ")
 
   const [ raffle, setRaffle ] = useState(
       {
         name: "",
-        secret_token: "" 
+        secret_token: "",
+        date_created: currentDateAndTime,
       }
     );
-  const navigate = useNavigate()
+ 
 
     const addRaffle = () => {
       axios
         .post(`${API}/api/raffles`, raffle)
         .then(() => {
-          
-          navigate(`/`);
-        })
-        .catch((c) => console.warn("catch", c));
-
-        axios
-        .get(`${API}/api/raffles`)
-        .then((response) => {
-          setRaffles(response.data.result)
+          axios.get(`${API}/api/raffles`)
+          .then((response) => {
+            setRaffles(response.data.result)
+          })
         })
         .catch((c) => console.warn("catch", c));
     };
+
+    // const retForm = () => {
+
+    // }
   
     const handleTextChange = (event) => {
       setRaffle({ ...raffle, [event.target.id]: event.target.value });

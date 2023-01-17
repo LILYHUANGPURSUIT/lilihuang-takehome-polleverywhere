@@ -1,17 +1,18 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 
 import { NavBar } from '../../components/navbar/NavBar'
 
 const Raffle = () => {
 
+  const { id } = useParams();
+
   return (
     <div>
-        <NavBar />
+        <NavBar raffle_id={id}/>
         
         <Outlet />
 
-        {/* <small>Please click Register tag to signup as a participant</small> */}
     </div>
   )
 }
