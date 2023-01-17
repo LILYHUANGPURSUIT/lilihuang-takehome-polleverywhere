@@ -7,11 +7,6 @@ const API = process.env.REACT_APP_API_URL;
 
 export const WithoutWinner = ({currentRaffle, allparticipants }) => {
 
-  // input secret token 
-    // make a put request -- /api/raffles/:id/winner
-    // pass secret_token and check if match or not, 
-    // update raffle.winner_id, raffle.date_raffled
-
   const [ token, setToken ] = useState({
     "secret_token": ""
   })
