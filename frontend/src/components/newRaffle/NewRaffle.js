@@ -22,6 +22,10 @@ export const NewRaffle = ({setRaffles}) => {
       axios
         .post(`${API}/api/raffles`, raffle)
         .then(() => {
+          setRaffle({
+            name: "",
+            secret_token: "",
+          })
           axios.get(`${API}/api/raffles`)
           .then((response) => {
             setRaffles(response.data.result)

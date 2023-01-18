@@ -52,7 +52,6 @@ const handlePickAWinner = () => {
             onClick={handlePickAWinner}>
             Pick a Winner
           </button>
-          {/* <button onClick={handlePickAWinner}>Pick a Winner</button> */}
     </div>
     
   )
