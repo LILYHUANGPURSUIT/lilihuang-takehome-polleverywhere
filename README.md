@@ -1,26 +1,42 @@
 # lilihuang-takehome-polleverywhere
 
 1. Open your terminal and then type
+-  * This clones the repo
+- #### $ git clone {the url to the GitHub repo}
 
-- $ git clone {the url to the GitHub repo}
 
-- This clones the repo
 
-2. cd into the new folder and type
-
-- $ npm install
-
-- This installs the required dependencies
+2. cd into backend and type
+-  * This installs the required dependencies
+- #### $ npm install
 
 3. cd into backend
-- $ npm run db_init
-- $ npm run db_seed
+-  * This creates database, tables and inserts data
+- #### $ npm run db_init
+- #### $ npm run db_seed
 
-- This creates databse, tables and inserts data
-- $ npm start
+4. cd into frontend and type
+- #### $ touch .env
 
-4. To run the React project.
-- $ npm start
+- inside .env file here is what you need to type:
+- #### REACT_APP_API_URL=http://localhost:8888
+
+5. cd into backend and type
+- #### $ touch .env
+
+- inside .env file here is what you need to type:
+- #### PORT=8888
+- #### PG_HOST=localhost
+- #### PG_PORT=5432
+- #### PG_DATABASE=raffles_dev
+- #### PG_USER=postgres
+
+6. type to run backend 
+- #### $ npm start
+or - $ npm run dev
+
+7. cd into frontend to run the React project.
+- #### $ npm start
 
 ## Home Page 
 - Display a form to add a new raffle with name and token fields and a submit button. 
