@@ -6,7 +6,7 @@ export const NavBar = ( { raffle_id }) => {
   return (
     <ul className="nav">
       <li className="nav-item">
-        <Link to="/" classNameName="nav-link">All Raffles</Link>
+        <Link to="/" className="nav-link">All Raffles</Link>
         
       </li>
       <li className="nav-item">

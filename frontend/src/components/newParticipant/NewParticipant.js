@@ -24,7 +24,7 @@ export const NewParticipant = () => {
           .post(`${API}/api/raffles/${id}/participants`, participant)
           .then(() => {
             const allRequiredfield = participant.firstname && participant.lastname && participant.email;
-            allRequiredfield && MessageAlert();
+            allRequiredfield && new MessageAlert();
           })
           .catch((c) => {
             console.warn("catch", c)

@@ -33,6 +33,7 @@ const handlePickAWinner = () => {
         axios.get(`${API}/api/raffles/${winner_id}/winner`)
           .then((response) => {
             setFinalWinner(response.data.result)
+            console.log(response.data.result)
           })
       })
       .catch(err => console.log(err))

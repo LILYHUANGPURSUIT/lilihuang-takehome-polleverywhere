@@ -26,7 +26,7 @@ export const MessageAlert = (inputOne, inputTwo, inputThree, error) => {
             `${required_input.input1} ${required_input.input2} ${required_input.input3} required`
       });
 
-  return (
-    <div>{toastMixin()}</div>
-  )
+  // return (
+  //   <div>{toastMixin()}</div>
+  // )
 }

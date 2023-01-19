@@ -2,13 +2,23 @@ import React from 'react'
 
 export const ParticipantInOneRaffle = ({ participant }) => {
   return (
-    <div>
-        <h3>{participant.firstname} {participant.lastname}</h3>
-        <ul>
-            <li>id: {participant.id}</li>
-            <li>email: {participant.email}</li>
-            <li>phone: {participant.phone}</li>
+    <div className='participantCard'>
+      <div className="card">
+        <h3 className="card-header">
+          {participant.firstname} {participant.lastname}
+        </h3>
+        <ul className="card-body">
+            <li className="card-text">
+              id: {participant.id}
+            </li>
+            <li className="card-text">
+              email: {participant.email}
+            </li>
+            <li className="card-text">
+              phone: {participant.phone}
+            </li> 
         </ul>
+      </div>
     </div>
   )
 }
