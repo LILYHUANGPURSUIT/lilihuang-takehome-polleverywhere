@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import { AllRaffles } from "./components/allRaffles/AllRaffles";
 import { NewParticipant } from "./components/newParticipant/NewParticipant";
 import { Home } from './pages/home/Home';
 import { Participants } from "./pages/participants/Participants";

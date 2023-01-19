@@ -9,6 +9,7 @@ const API = process.env.REACT_APP_API_URL;
 export const Winner = ({allparticipants}) => {
   
   const [ currentRaffle, setCurrentRaffle ] = useState([]);
+  const [finalWinner, setFinalWinner] = useState({})
   const { id } =useParams();
 
   useEffect(()=> {
@@ -20,8 +21,8 @@ export const Winner = ({allparticipants}) => {
   return (
     <div>
         {currentRaffle.winner_id ? 
-        <WithWinner currentRaffle={currentRaffle} /> :
-        <WithoutWinner currentRaffle={currentRaffle} allparticipants = {allparticipants} />}
+        <WithWinner currentRaffle={currentRaffle} finalWinner={finalWinner} /> :
+        <WithoutWinner currentRaffle={currentRaffle} allparticipants = {allparticipants} setFinalWinner={setFinalWinner}/>}
     </div>
   )
 }

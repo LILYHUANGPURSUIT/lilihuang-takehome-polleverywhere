@@ -18,7 +18,6 @@ export const NewParticipant = () => {
           phone: ""
         }
       );
-    const navigate = useNavigate()
   
       const addParticipant = () => {
         axios
@@ -54,8 +53,8 @@ export const NewParticipant = () => {
     <div className='newParticipant'>
         <h2 className='participantForm__title'>Register to participant in the raffle:</h2>
 
-        <form class="row g-3" onSubmit={handleSubmit}>
-        <div class="col-md-6">
+        <form className="row g-3" onSubmit={handleSubmit}>
+        <div className="col-md-6">
             <label htmlFor="firstname" className="form-label">First Name</label>
             <input type="text" value={participant.firstname} className="form-control" id="firstname" onChange={handleTextChange} required/>
         </div>

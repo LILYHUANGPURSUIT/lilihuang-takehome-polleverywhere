@@ -5,7 +5,7 @@ import "./withoutWinner.css"
 
 const API = process.env.REACT_APP_API_URL;
 
-export const WithoutWinner = ({currentRaffle, allparticipants }) => {
+export const WithoutWinner = ({currentRaffle, allparticipants, setFinalWinner }) => {
 
   const [ token, setToken ] = useState({
     "secret_token": ""
@@ -18,22 +18,32 @@ export const WithoutWinner = ({currentRaffle, allparticipants }) => {
 }
 
 const handlePickAWinner = () => {
+  console.log("all: ", allparticipants)
   if(!allparticipants.length) {
-     alert("no participant yet")
+     alert("no participant yet");
+     return;
   }
-  if(currentRaffle.secret_token === token.secret_token) {
+  if(allparticipants.length && (currentRaffle.secret_token === token.secret_token)) {
+    
     axios.put(`${API}/api/raffles/${currentRaffle.id}/winner`, token)
-      .then(() => {
-        navigate(`/raffles/${currentRaffle.id}/winner`);
+      .then((res) => {
+        console.log(res.data.result)
+        const { winner_id } = res.data.result;
+        console.log(winner_id)
+        axios.get(`${API}/api/raffles/${winner_id}/winner`)
+          .then((response) => {
+            setFinalWinner(response.data.result)
+          })
       })
       .catch(err => console.log(err))
   } else {
-    alert("secret token incorrect")
+    console.log("fail")
+    alert("secret token incorrect or no participant")
   }
 }
 
   return (
-    <div class="col-md-6" id="noWinner">
+    <div className="col-md-6" id="noWinner">
         <label htmlFor="secret_token" className="form-label" >
           Pick a Winner
         </label>
