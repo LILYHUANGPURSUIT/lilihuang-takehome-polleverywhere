@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import "./newParticipant.css"
+import { MessageAlert } from '../MessageAlert';
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -23,12 +24,12 @@ export const NewParticipant = () => {
         axios
           .post(`${API}/api/raffles/${id}/participants`, participant)
           .then(() => {
-            
-            navigate(`/raffles/${id}/participants`);
+            const allRequiredfield = participant.firstname && participant.lastname && participant.email;
+            allRequiredfield && MessageAlert();
           })
-          .catch((c) => console.warn("catch", c));
-  
-          
+          .catch((c) => {
+            console.warn("catch", c)
+          });
       };
     
       const handleTextChange = (event) => {
@@ -39,6 +40,15 @@ export const NewParticipant = () => {
         event.preventDefault();
         addParticipant();
       };
+
+      const reset =()=> {
+        setParticipant({
+          firstname: "",
+          lastname: "",
+          email: "",
+          phone: ""
+        })
+      }
 
   return (
     <div className='newParticipant'>
@@ -59,13 +69,13 @@ export const NewParticipant = () => {
         </div>
         <div className="col-md-6">
             <label htmlFor="phone" className="form-label">Phone Number</label>
-            <input type="text" value={participant.phone}className="form-control" id="phone" onChange={handleTextChange} required/>
+            <input type="text" value={participant.phone}className="form-control" id="phone" onChange={handleTextChange} />
         </div>
         
         
         <div className="col-12">
-            <button type="submit" className="btn btn-primary">Submit</button>
-            <button type="submit" className="btn btn-secondery">Reset</button>
+            <button type="submit" className="btn btn-primary" >Submit</button>
+            <button type="submit" className="btn btn-secondery" onClick={reset}>Reset</button>
         </div>
         </form>
         
