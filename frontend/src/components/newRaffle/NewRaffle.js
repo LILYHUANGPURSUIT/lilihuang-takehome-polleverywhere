@@ -33,10 +33,6 @@ export const NewRaffle = ({setRaffles}) => {
         })
         .catch((c) => console.warn("catch", c));
     };
-
-    // const retForm = () => {
-
-    // }
   
     const handleTextChange = (event) => {
       setRaffle({ ...raffle, [event.target.id]: event.target.value });
