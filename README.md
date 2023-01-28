@@ -62,3 +62,6 @@ or - $ npm run dev
 2. Pick Winner Page 
 - Displays a form where a user (the raffle admin) can input their secret token and pick a winner at random for the raffle. - If a winner has already been picked this page/view should display a card with the user information and a celebratory image and never show the form again.
 <img width="1168" alt="Screen Shot 2023-01-17 at 12 34 39 AM" src="https://user-images.githubusercontent.com/86433459/212820686-00401ac6-09a0-470f-9448-db32b242f487.png">
+
+Picked a winner if any participants
+<img width="1287" alt="Screen Shot 2023-01-28 at 11 08 33 AM" src="https://user-images.githubusercontent.com/86433459/215276843-62944195-7d66-47a2-8900-c31664df55a7.png">
