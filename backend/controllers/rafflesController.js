@@ -72,18 +72,19 @@ raffles.post("/:id/participants", async(req, res) => {
     // /api/raffles/:id/winner
 raffles.put("/:id/winner", async (req, res) => {
 
-    const currentDateAndTimeArr = Date().toLocaleString().split(" ");
-    const currentDateAndTime = currentDateAndTimeArr.slice(0,4).join(" ") + " at " + currentDateAndTimeArr.slice(4,5).join(" ")
+    const currentDateAndTime = Date().toLocaleString();
+    // const currentDateAndTime = currentDateAndTimeArr.slice(0,4).join(" ") + " at " + currentDateAndTimeArr.slice(4,5).join(" ")
 
     const { id } = req.params;
     const raffle = req.body;
     const allPariticipantsOfSpecificRaffle = await getAllParticipants(id);
-    console.log(allPariticipantsOfSpecificRaffle)
+  
     const winner = pickArandomWinner(allPariticipantsOfSpecificRaffle);
+  
     if(winner.id) {
         raffle.winner_id = winner.id;
     } else {
-        return;
+        return {};
     }
     
     raffle.date_raffled = currentDateAndTime;
@@ -100,15 +101,15 @@ raffles.put("/:id/winner", async (req, res) => {
     // /api/raffles/:id/winner
 raffles.get("/:id/winner", async (req, res) => {
     const { id } = req.params;
-    // use the raffle id to the specific raffle
-    const raffle = getOneRaffle(id);
+    // use the raffle id to get the specific raffle
+    const raffle = await getOneRaffle(id);
     
     if(raffle.winner_id) {
         // use the winner_id to get participant id
-        const winner = getOneParticipant(raffle.winner_id)
+        const winner = await getOneParticipant(raffle.winner_id)
         res.json({success: true, result: winner});
     } else {
-        res.status(500).json({success: false, error: winner});
+        res.status(500).json({success: false});
     }
     
 });
