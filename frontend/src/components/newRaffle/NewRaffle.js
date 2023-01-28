@@ -6,8 +6,8 @@ const API = process.env.REACT_APP_API_URL;
 
 export const NewRaffle = ({setRaffles}) => {
 
-  const currentDateAndTimeArr = Date().toLocaleString().split(" ");
-  const currentDateAndTime = currentDateAndTimeArr.slice(0,4).join(" ") + " at " + currentDateAndTimeArr.slice(4,5).join(" ")
+  const currentDateAndTime = Date().toLocaleString();
+  // const currentDateAndTime = currentDateAndTimeArr.slice(0,4).join(" ") + " at " + currentDateAndTimeArr.slice(4,5).join(" ")
 
   const [ raffle, setRaffle ] = useState(
       {

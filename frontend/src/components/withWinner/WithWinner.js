@@ -4,26 +4,26 @@ import "./withWinner.css"
 
 const API = process.env.REACT_APP_API_URL;
 
-export const WithWinner = ({currentRaffle, finalWinner}) => {
+export const WithWinner = ({currentRaffle}) => {
 
-  // const [ winner, setWinner ] = useState([]);
+  const [ winner, setWinner ] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get((`${API}/api/${currentRaffle.id}/winner`))
-  //   .then((response) => setWinner(response.data.result))
-  //   .catch(err => console.log(err))
-  // })
+  useEffect(() => {
+    axios.get(`${API}/api/raffles/${currentRaffle.id}/winner`)
+    .then((response) => setWinner(response.data.result))
+    .catch(err => console.log(err))
+  })
   
   return (
     <div className="winnerCard">
         <img src="https://t3.ftcdn.net/jpg/03/76/67/56/360_F_376675663_KfWjTqneCLrmq2pQthRGHFFH4T2rNLzX.jpg" className="winnerCard__img" alt="placeholder"/>
       <div className="winnerCard__info">
-        <h3>Winner Name: {finalWinner.firstname} {finalWinner.lastname}</h3>
+        <h3>Winner Name: {winner.firstname} {winner.lastname}</h3>
         <ul>
-            <li>Registered on Sat may 22 2021 at 8:03:17 PM</li>
-            <li>winner id: {finalWinner.winner_id}</li>
-            <li>winner email: {finalWinner.email}</li>
-            <li>winner phone number: {finalWinner.phone}</li>
+            <li>Raffle Date: {currentRaffle.date_raffled}</li>
+            <li>Winner Id: {winner.id}</li>
+            <li>Winner Email: {winner.email}</li>
+            <li>Winner Phone Number: {winner.phone}</li>
         </ul>
       </div>
     </div>

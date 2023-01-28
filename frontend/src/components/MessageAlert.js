@@ -1,7 +1,5 @@
 import Swal from 'sweetalert2';
 
-import React from 'react'
-
 export const MessageAlert = (inputOne, inputTwo, inputThree, error) => {
     const required_input = {
         input1: inputOne || "",
@@ -25,8 +23,4 @@ export const MessageAlert = (inputOne, inputTwo, inputThree, error) => {
             "Added successfully" : 
             `${required_input.input1} ${required_input.input2} ${required_input.input3} required`
       });
-
-  // return (
-  //   <div>{toastMixin()}</div>
-  // )
 }

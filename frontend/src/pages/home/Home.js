@@ -6,7 +6,7 @@ export const Home = ({raffles, setRaffles}) => {
   return (
     <div className='home_container'>
         <NewRaffle  setRaffles={setRaffles} />
-        <AllRaffles raffles={raffles}/>
+        <AllRaffles raffles={raffles} setRaffles={setRaffles}/>
     </div>
   )
 }

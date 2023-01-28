@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MessageAlert } from '../MessageAlert';
 import "./withoutWinner.css"
 
 const API = process.env.REACT_APP_API_URL;
 
-export const WithoutWinner = ({currentRaffle, allparticipants, setFinalWinner }) => {
+export const WithoutWinner = ({currentRaffle, allparticipants }) => {
 
   const [ token, setToken ] = useState({
     "secret_token": ""
@@ -18,7 +19,6 @@ export const WithoutWinner = ({currentRaffle, allparticipants, setFinalWinner })
 }
 
 const handlePickAWinner = () => {
-  console.log("all: ", allparticipants)
   if(!allparticipants.length) {
      alert("no participant yet");
      return;
@@ -26,19 +26,9 @@ const handlePickAWinner = () => {
   if(allparticipants.length && (currentRaffle.secret_token === token.secret_token)) {
     
     axios.put(`${API}/api/raffles/${currentRaffle.id}/winner`, token)
-      .then((res) => {
-        console.log(res.data.result)
-        const { winner_id } = res.data.result;
-        console.log(winner_id)
-        axios.get(`${API}/api/raffles/${winner_id}/winner`)
-          .then((response) => {
-            setFinalWinner(response.data.result)
-            console.log(response.data.result)
-          })
-      })
+      .then(() => MessageAlert())
       .catch(err => console.log(err))
   } else {
-    console.log("fail")
     alert("secret token incorrect or no participant")
   }
 }
